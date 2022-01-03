@@ -23,7 +23,7 @@
 - Change to each directory using "cd <dir_name>" and run the terraform commands. 
 
 E.g.
-```terraform
+```
 cd 01_basic
 terraform init
 terraform fmt
