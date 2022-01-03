@@ -18,8 +18,8 @@
 
 
 ## How to Demo
-- Update ApiKey.txt file with the Intersight ApiKey.
-- Update SecretKey.txt file with the Intersight SecretKey.
+- Update `ApiKey.txt` file with the Intersight ApiKey.
+- Update `SecretKey.txt` file with the Intersight SecretKey.
 - Change to each directory using "cd <dir_name>" and run the terraform commands. 
 
 E.g.
