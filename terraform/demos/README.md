@@ -23,6 +23,7 @@
 - Change to each directory using "cd <dir_name>" and run the terraform commands. 
 
 E.g.
+```terraform
 cd 01_basic
 terraform init
 terraform fmt
@@ -31,4 +32,4 @@ terraform plan                  : review the output
 terraform apply -auto-approve   : verify resource creation in intersight with all the properties defined in variables file.
 terraform destory -auto-approve : Destory created resources 
 rm -rf .terraform .terraform.lock.hcl terraform.tfstate terraform.tfstate.backup  : Remove provider, state files once done.
-
+```
