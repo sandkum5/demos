@@ -1,20 +1,20 @@
 # Terraform Intersight Demos
 
-01_basic: Demo Code with no variables
+01_basic                                    : Demo Code with no variables
 
-02_local_vars: Code with with local variables in a single file
+02_local_vars                               : Code with with local variables in a single file
 
-03_file_vars : Code with variables defined in a separate file
+03_file_vars                                : Code with variables defined in a separate file
 
-04_multiple_identical_resources: Code to create multiple resources with identical properties
+04_multiple_identical_resources             : Code to create multiple resources with identical properties
 
-05_multiple_different_resources: Code to create multiple resources with different properties
+05_multiple_different_resources             : Code to create multiple resources with different properties
 
-06_multi_diff_resources_with_nested_objects: Code to create multiple resources with different nested properties.
+06_multi_diff_resources_with_nested_objects : Code to create multiple resources with different nested properties.
 
-07_separate_files: Code to showcase how to keep code in separate files
+07_separate_files                           : Code to showcase how to keep code in separate files
 
-08_data_sources_and_outputs: Code to showcase how to use data sources and outputs.
+08_data_sources_and_outputs                 : Code to showcase how to use data sources and outputs.
 
 
 ## How to Demo
