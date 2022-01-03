@@ -1,19 +1,19 @@
 resource "intersight_ntp_policy" "ntp_policy" {
-    name        = "ntp_basic_demo"
-    description = "Policy Created using no variables"
-    enabled = true
-    ntp_servers = ["1.1.1.1", "2.2.2.2"]
-    timezone = "America/Los_Angeles"
-    organization {
-        object_type = "organization.Organization"
-        moid        = data.intersight_organization_organization.org_data.results[0].moid
+  for_each    = { for ntp in var.ntp : ntp.Name => ntp }
+  name        = each.value.Name
+  description = each.value.Description
+  organization {
+    object_type = "organization.Organization"
+    selector    = "$filter=Name eq '${each.value.Organization.Name}'"
+  }
+  enabled     = each.value.Enabled
+  ntp_servers = each.value.NtpServers
+  timezone    = each.value.Timezone
+  dynamic "tags" {
+    for_each = length(each.value.Tags) != [] ? each.value.Tags : []
+    content {
+      key   = tags.value.Key
+      value = tags.value.Value
     }
-    tags {
-        key   = "Location"
-        value = "San Jose"
-    }
-    tags {
-        key   = "DC"
-        value = "LAB"
-    }
+  }
 }

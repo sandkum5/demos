@@ -8,7 +8,6 @@ variable "ntp" {
     Organization = object({
       Name = string
     })
-    Tags = list(object({ Key = string, Value = string }))
   }))
   default = [{
     Name         = "demo-ntp1"
@@ -17,7 +16,6 @@ variable "ntp" {
     NtpServers   = ["1.1.1.1", "2.2.2.2"]
     Timezone     = "America/Los_Angeles"
     Organization = { Name = "default" }
-    Tags         = []
   }]
   description = <<EOT
     Name              : Name of NTP policy
@@ -26,6 +24,5 @@ variable "ntp" {
     NtpServers        : List of NTP servers
     Timezone          : Timezone of the NTP policy
     Organization.Name : Organization Name
-    Tags              : Tags
     EOT
 }

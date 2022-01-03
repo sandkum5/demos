@@ -5,7 +5,6 @@ ntp = [{
   NtpServers   = ["1.1.1.1", "2.2.2.2"]
   Timezone     = "America/Los_Angeles"
   Organization = { Name = "default" }
-  Tags         = []
   },
   {
     Name         = "demo-ntp2"
@@ -14,12 +13,4 @@ ntp = [{
     NtpServers   = ["3.3.3.3", "4.4.4.4"]
     Timezone     = "Africa/Accra"
     Organization = { Name = "default" }
-    Tags = [{
-      Key   = "Location"
-      Value = "SJ"
-      },
-      {
-        Key   = "ENV"
-        Value = "PROD"
-    }]
 }]
