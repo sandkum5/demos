@@ -16,11 +16,15 @@
 
 `08_data_sources_and_outputs` : Code to showcase how to use data sources and outputs.
 
+`09_modules` : Code to showcase how to create and use modules.
+
+`10_validation` : Code to showcase variable input validation
+
 
 ## How to Demo
 - **Update** `ApiKey.txt` file with the Intersight ApiKey.
 - **Update** `SecretKey.txt` file with the Intersight SecretKey.
-- Change to each directory using "cd <dir_name>" and run the terraform commands. 
+- Change to each directory using "cd <dir_name>" and run the terraform commands.
 
 E.g.
 ```terraform
@@ -30,6 +34,6 @@ terraform fmt
 terraform validate
 terraform plan                  : review the output
 terraform apply -auto-approve   : verify resource creation in intersight with all the properties defined in variables file.
-terraform destory -auto-approve : Destory created resources 
+terraform destory -auto-approve : Destory created resources
 rm -rf .terraform .terraform.lock.hcl terraform.tfstate terraform.tfstate.backup  : Remove provider, state files once done.
 ```
