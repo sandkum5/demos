@@ -26,7 +26,7 @@ resource "intersight_ntp_policy" "ntp_policy" {
   ntp_servers = each.value.NtpServers
   timezone    = each.value.Timezone
   dynamic "tags" {
-    for_each =  length(each.value.Tags) != [] ? each.value.Tags : []
+    for_each =  each.value.Tags
     content {
       key   = tags.value.Key
       value = tags.value.Value
