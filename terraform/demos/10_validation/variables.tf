@@ -23,12 +23,8 @@ variable "Enabled" {}
 variable "NtpServers" {
   type = list(string)
   validation {
-    condition = length(var.NtpServers) > 0
-    error_message = "Please enter atleast a single NTP server."
-  }
-  validation {
-    condition = length(var.NtpServers) <= 4
-    error_message = "Please enter a maximum of 4 NTP servers in a list. Each element should be a string."
+    condition = length(var.NtpServers) > 0 && length(var.NtpServers) <= 4
+    error_message = "NTP Servers must be between 1 to 4.
   }
 }
 
