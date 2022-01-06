@@ -13,14 +13,24 @@ variable "Name" {
 variable "Description" {
   type = string
   validation {
-    condition = length(var.Description) > 0
+    condition = length(var.Description) > 20
     error_message = "Please add Description for the variable."
   }
 }
 
 variable "Enabled" {}
 
-variable "NtpServers" {}
+variable "NtpServers" {
+  type = list(string)
+  validation {
+    condition = length(var.NtpServers) > 0
+    error_message = "Please enter atleast a single NTP server."
+  }
+  validation {
+    condition = length(var.NtpServers) <= 4
+    error_message = "Please enter a maximum of 4 NTP servers in a list. Each element should be a string."
+  }
+}
 
 variable "Timezone" {}
 
@@ -33,21 +43,3 @@ variable "Tags" {
   type = list(object({ Key = string, Value = string }))
   # type = list(map(string))
   }
-
-# Default values
-# Name         = "demo-ntp1"
-# Description  = "DEMO NTP1 for SJ location from variables.tf file"
-# Enabled      = true
-# NtpServers   = ["1.1.1.1", "2.2.2.2"]
-# Timezone     = "America/Los_Angeles"
-# Organization = { Name = "default" }
-# Tags         = []
-#
-# Description
-# Name              : Name of NTP policy
-# Description       : Description of the NTP Policy
-# Enabled           : If NTP Policy is enabled
-# NtpServers        : List of NTP servers
-# Timezone          : Timezone of the NTP policy
-# Organization.Name : Organization Name
-# Tags              : Tags
