@@ -10,7 +10,7 @@ variable "Name" {
   }
   validation {
     condition = regex("[0-9A-Za-z\\-_\\.]+", var.Name) == var.Name
-    error_message = "The number should include alphanumeric characters, allowing '-' '_' '.' special characters."
+    error_message = "The number should include alphanumeric characters, allowing special characters '-' '_' '.' ."
   }
 }
 
@@ -22,7 +22,13 @@ variable "Description" {
   }
 }
 
-variable "Enabled" {}
+variable "Enabled" {
+  type = bool
+  validation {
+    condition = var.Enabled == true
+    error_message = "NTP Policy should be enabled."
+  }
+}
 
 variable "NtpServers" {
   type = list(string)
@@ -43,9 +49,17 @@ variable "Timezone" {
 variable "Organization" {
   type = object({ Name = string })
   # type = map(string)
+  validation {
+    condition = var.Organization.Name == "default" || var.Organization.Name == "Prod"
+    error_message = "Organization Name should be one of the following: default, Prod."
+  }
 }
 
 variable "Tags" {
   type = list(object({ Key = string, Value = string }))
   # type = list(map(string))
+  validation {
+    condition = var.Tags[0].Key == "Location"
+    error_message = "Tag Location should be present."
+  }
 }
