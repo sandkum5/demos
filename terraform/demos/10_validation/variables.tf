@@ -18,7 +18,7 @@ variable "Description" {
   type = string
   validation {
     condition = length(var.Description) > 20
-    error_message = "Please add Description for the variable. The letters should be <= 1024."
+    error_message = "Please add Description for the variable. The characters should be <= 1024."
   }
 }
 
