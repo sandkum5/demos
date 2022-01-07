@@ -10,7 +10,7 @@ variable "Name" {
   }
   validation {
     condition = regex("[0-9A-Za-z\\-_\\.]+", var.Name) == var.Name
-    error_message = "The number should include alphanumeric characters, allowing special characters '-' '_' '.' ."
+    error_message = "The number should include alphanumeric characters, allowing '-' '_' '.' special characters."
   }
 }
 
