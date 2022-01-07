@@ -20,6 +20,8 @@
 
 `10_validation` : Code to showcase variable input validation
 
+`11_policy` : Code to showcase policy check using conftest.
+
 
 ## How to Demo
 - **Update** `ApiKey.txt` file with the Intersight ApiKey.
