@@ -59,7 +59,11 @@ variable "Tags" {
   type = list(object({ Key = string, Value = string }))
   # type = list(map(string))
   validation {
-    condition = var.Tags[0].Key == "Location"
-    error_message = "Tag Location should be present."
-  }
+    condition = length(var.Tags) > 0
+    error_message = "All policies should have tags. Add tags showing the location, owner, org: prod,lab, etc."
+  }  
+  # validation {
+  #   condition = var.Tags[0].Key == "Location"
+  #   error_message = "Tag Location should be present."
+  # }
 }
