@@ -522,20 +522,24 @@ Multi-line comments are wrapped with /* and */
 Multiline strings can use shell-style "here doc" syntax, with the string starting with a marker like <<EOF and then the string ending with EOF on a line of its own. The lines of the string and the end marker must not be indented.
 ```
 
+```
 tflint — https://github.com/terraform-linters/
 terrafirma — https://github.com/wayfair/terrafirma
 tfsec — https://github.com/liamg/tfsec
 terrascan — https://github.com/cesar-rodriguez/terrascan (no TF 0.13 support at this time)
 checkov — https://github.com/bridgecrewio/checkov/
 conftest — https://github.com/instrumenta/conftest
+```
 
-Conftest is a command line tool for testing configuration files and uses Open Policy Agent (OPA) under the hood.
-Conftest uses the Rego language from Open Policy Agent for writing the assertions.
-Conftest will look in the directory ./policy for Rego policies.
-If you do not have it in that directory, this also works:
-conftest test --policy [location_here] tfplan-2.json
+- Conftest is a command line tool for testing configuration files and uses Open Policy Agent (OPA) under the hood.
+- Conftest uses the Rego language from Open Policy Agent for writing the assertions.
+- Conftest will look in the directory ./policy for Rego policies.
+- If you do not have it in that directory, this also works:
+- conftest test --policy [location_here] tfplan-2.json
 
+```
 docker run --rm -v $(pwd):/project openpolicyagent/conftest test deployment.yaml
+```
 
 ---
 # Documentation
