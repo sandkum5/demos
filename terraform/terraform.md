@@ -18,7 +18,7 @@ By: Sandeep Kumar
 - Demos
 - Additional Info
   - terraform-docs, tfvar, File Extensions
-- Miscellanious
+- miscellaneous
 - Documentation
 
 ---
