@@ -13,9 +13,9 @@ By: Sandeep Kumar
 - Core Terraform Workflow
 - HCL(HashiCorp Configuration Language)
 - Terraform Basics
-    - Variables, Providers, Backend, Resources, Data Sources, Output, Statefile, Meta-Parameters, Environment variables, Debugging
+    - Variables, Providers, Backend, Resources, Data Sources, Output, Statefile, Meta-Parameters, Expressions, Environment variables, Debugging
 - Terraform Advanced
-    - Modules, Workspaces, TF Cloud, PaC(Policy as Code), Importing Infrastructure, CICD Workflow
+    - Modules, Workspaces, TF Cloud, PaC(Policy as Code), Importing Infrastructure, Provisioners, CICD Workflow
 - Demos
 - Additional Info
   - terraform-docs, tfvar, File Extensions
@@ -260,16 +260,42 @@ resource "<resource_name>" "<local_resource_identifier>" {}
     - Current State - What's running on infrastructure .tfstate file
 
 ## Meta-Parameters
-- Loops
-- - Meta-Parameters *
-    - provider
-        - 3rd Party providers - not downloaded by "terraform init"
-            Manually copy the provider to ~/.terraform.d/plugins dir on mac/linux
 
-    - depends_on
-    - count
-    - for_each
-    - lifecycle
+- provider
+    - 3rd Party providers - not downloaded by "terraform init"
+        Manually copy the provider to ~/.terraform.d/plugins dir on mac/linux
+
+- depends_on
+- count
+- for_each
+- lifecycle
+
+## Expressions
+- Conditional Expressions:
+  - A conditional expression uses the value of a boolean expression to select one of two values.
+  - condition ? true_val : false_val
+
+- Dynamic Blocks:
+  - Dynamically construct repeatable nested blocks
+  - Supported inside resource, data, provider, and provisioner blocks.
+  - It iterates over a given complex value, and generates a nested block for each element of that complex value.
+```terraform
+resource "aws_elastic_beanstalk_environment" "tfenvtest" {
+  name                = "tf-test-name"
+  application         = "${aws_elastic_beanstalk_application.tftest.name}"
+  solution_stack_name = "64bit Amazon Linux 2018.03 v2.11.4 running Go 1.12.6"
+
+  dynamic "setting" {
+    for_each = var.settings
+    content {
+      namespace = setting.value["namespace"]
+      name = setting.value["name"]
+      value = setting.value["value"]
+    }
+  }
+}
+Src: https://www.terraform.io/language/expressions/dynamic-blocks
+```
 
 ## Environment variables:
 - Terraform will read environment variables in the form of TF_VAR_name to find the value for a variable.
@@ -362,7 +388,6 @@ Tagging, Organization, Workspaces, Notifications
 3rd Party Tools and services integration to manage cost, security, compliance and more.
 
 
-
 ## PaC(Policy as Code)
 - Sentinel Policies(TF Cloud)
     - An embedded policy-as-code framework integrated with Hashicorp Enterprise products.
@@ -373,6 +398,10 @@ Tagging, Organization, Workspaces, Notifications
 - OPA(Open Policy Agent)
 
 ## Importing Infrastructure
+https://www.terraform.io/cli/import
+
+## Provisioners
+https://www.terraform.io/language/resources/provisioners
 
 ## CICD Workflow
 - Add/Update Terraform code in a new Git branch
@@ -390,55 +419,6 @@ Workflow Commands:
 - terraform apply
 - terraform destory
 
----
-- Imports *
-- Provisioners *
-- Expressions *
-- Functions *
-- Conditional Expressions:
-    - A conditional expression uses the value of a boolean expression to select one of two values.
-    - condition ? true_val : false_val
-
----
-- Looping:
-    - count
-    - for_each
-
-```
-        Syntax:
-        resource "<PROVIDER>_<TYPE>" "<NAME>" {
-            for_each = <COLLECTION>
-            [CONFIG ...]
-        }
-```
-        - PROVIDER is the name of a provider (e.g., aws)
-        - TYPE is the type of resource to create in that provider (e.g., instance).
-        - NAME is an identifier that you can use throughout the Terraform code to refer to this resource (e.g., my_instance).
-        - `COLLECTION is a set or map to loop over` (lists are not supported when using for_each on a resource).
-        - CONFIG consists of one or more arguments that are specific to that resource.
-
-    - for Expressions
-    - Dynamic Blocks:
-        - Dynamically construct repeatable nested blocks
-        - Supported inside resource, data, provider, and provisioner blocks.
-        - It iterates over a given complex value, and generates a nested block for each element of that complex value.
-```terraform
-resource "aws_elastic_beanstalk_environment" "tfenvtest" {
-  name                = "tf-test-name"
-  application         = "${aws_elastic_beanstalk_application.tftest.name}"
-  solution_stack_name = "64bit Amazon Linux 2018.03 v2.11.4 running Go 1.12.6"
-
-  dynamic "setting" {
-    for_each = var.settings
-    content {
-      namespace = setting.value["namespace"]
-      name = setting.value["name"]
-      value = setting.value["value"]
-    }
-  }
-}
-Src: https://www.terraform.io/language/expressions/dynamic-blocks
-```
 ---
 # Demos
 
@@ -493,7 +473,7 @@ Src: https://www.terraform.io/language/expressions/dynamic-blocks
     - terraform.tfstate.backup
 
 ---
-# Miscellanious
+# Miscellaneous
 
 - Terraform console to test functions:
 ```terraform
@@ -542,7 +522,6 @@ Multi-line comments are wrapped with /* and */
 Multiline strings can use shell-style "here doc" syntax, with the string starting with a marker like <<EOF and then the string ending with EOF on a line of its own. The lines of the string and the end marker must not be indented.
 ```
 
-
 tflint — https://github.com/terraform-linters/
 terrafirma — https://github.com/wayfair/terrafirma
 tfsec — https://github.com/liamg/tfsec
@@ -550,15 +529,13 @@ terrascan — https://github.com/cesar-rodriguez/terrascan (no TF 0.13 support a
 checkov — https://github.com/bridgecrewio/checkov/
 conftest — https://github.com/instrumenta/conftest
 
-
-docker run --rm -v $(pwd):/project openpolicyagent/conftest test deployment.yaml
-
 Conftest is a command line tool for testing configuration files and uses Open Policy Agent (OPA) under the hood.
 Conftest uses the Rego language from Open Policy Agent for writing the assertions.
 Conftest will look in the directory ./policy for Rego policies.
 If you do not have it in that directory, this also works:
 conftest test --policy [location_here] tfplan-2.json
 
+docker run --rm -v $(pwd):/project openpolicyagent/conftest test deployment.yaml
 
 ---
 # Documentation
