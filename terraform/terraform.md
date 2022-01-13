@@ -2,6 +2,7 @@
 # My Terraform Learnings
 Infrastructure as Code (IaC)
 
+
 By: Sandeep Kumar
 ---
 # Agenda
@@ -78,8 +79,7 @@ The core Terraform workflow has three steps:
 - Tells Terraform what plugins to install, what infrastructure to create, what data to fetch.
 - Define dependencies between resources and create multiple similar resources
 
-- Language Syntax consists of only a few basic elements:
-
+Language Syntax consists of only a few basic elements:
 ```
 <BLOCK TYPE> "<BLOCK LABEL>" "<BLOCK LABEL>" {
   # Block body
@@ -159,7 +159,7 @@ module "<mod_local_name> {}
             - Specify if the variable can be null within the module.
         - Ref: https://www.terraform.io/language/values/variables
 
-
+```
 variable "<var_name>" {
   type = bool
   description = "Bool variable"
@@ -172,7 +172,7 @@ variable "<var_name>" {
   }
   validation {}
 }
-
+```
     - How to access variable from map/list?
         var.map_name["a"]
         var.list_name[0]
@@ -181,6 +181,8 @@ variable "<var_name>" {
 ## Providers
 
 - Intersight Example:
+
+```
 terraform {
   required_providers {
     intersight = {
@@ -201,14 +203,16 @@ provider "intersight" {
 provider "aci" {
   # Configuration options
 }
-
+```
 
 ## Backend
 
 
 ## Resources
-resource "<resource_name>" "<local_resource_identifier>" {}
 
+```
+resource "<resource_name>" "<local_resource_identifier>" {}
+```
 
 ---
 ## Data Sources
@@ -227,11 +231,12 @@ resource "<resource_name>" "<local_resource_identifier>" {}
     - Output values exist in the tfstate file.
     - To get the public IP address, you can use the example command below.
         terraform output <out_variable_name>
+```
     Syntax:
     output "name_x" {
       value = resource_name.user_given_name.parameter_name
     }
-
+```
     - If the value = resource_name.user_given_name  : will list all the attributes with the resource to value
 
     - After apply, there would be an output section with output:
@@ -242,12 +247,13 @@ resource "<resource_name>" "<local_resource_identifier>" {}
     - Terraform stores the state of the infrastructure that is being created from the TF files.
     - This state file allows terraform to map real world resource to your exisiting configuration.
     Commands:
+```
         terraform state list
         terraform state show <resource_name>.<instance_name>
         terraform refresh  : fetches current state of your resources
         terraform plan     : will automatically refresh the state for you
         terraform show     : will print the statefile info in a easier to read format
-
+```
     - Desired State - explicitely defined in .tf files.
       Note: The settings which are not part of the tfstate file, terraform won't change them back.
 
@@ -301,6 +307,7 @@ resource "<resource_name>" "<local_resource_identifier>" {}
 - The version will let you define what version or versions of the module will be loaded.
 - Other arguments to module blocks are treated as input variables to the modules.
 E.g.
+```
 terraform.tf
 module "my_network" {
   source = "./network"
@@ -318,6 +325,7 @@ module "vpc" {
   azs             = var.vpc_azs
   private_subnets = var.vpc_private_subnets
 }
+```
 
 ## Workspaces
 - Creates a terraform.tfstate.d dir for each workspace to keep the state file separate for environments.
@@ -396,11 +404,13 @@ Workflow Commands:
     - count
     - for_each
 
+```
         Syntax:
         resource "<PROVIDER>_<TYPE>" "<NAME>" {
             for_each = <COLLECTION>
             [CONFIG ...]
         }
+```
         - PROVIDER is the name of a provider (e.g., aws)
         - TYPE is the type of resource to create in that provider (e.g., instance).
         - NAME is an identifier that you can use throughout the Terraform code to refer to this resource (e.g., my_instance).
@@ -431,6 +441,8 @@ Src: https://www.terraform.io/language/expressions/dynamic-blocks
 ```
 ---
 # Demos
+
+```
 01_basic                                    : Demo Code with no variables
 02_local_vars                               : Code with with local variables in a single file
 03_file_vars                                : Code with variables defined in a separate file
@@ -444,7 +456,7 @@ Src: https://www.terraform.io/language/expressions/dynamic-blocks
 11_policy                                   : Code to showcase policy check using conftest.
 12_import * NA
 13_cicd_workflow * NA
-
+```
 ---
 # Additional Stuff:
 
@@ -460,11 +472,13 @@ Src: https://www.terraform.io/language/expressions/dynamic-blocks
     - *.tf E.g. main.tf, ntp.tf, etc.
     - variables.tf - define the variables type and optionally set a default value.
       Syntax:
+```
         variable "var_name" {
             type = string
             description = "Variable Description"
             default = "default_value"
         }
+```
 ---
 - Variable Definitions (.tfvars) Files:
     - terraform.tfvars - used to set the actual values of the variables
@@ -503,6 +517,7 @@ resource "resource_name" "local_name" {
 }
 ```
 
+```
 terraform show -json tfplan > tfplan-1.json
 terraform show -json tfplan | jq > tfplan-2.json
 
@@ -519,12 +534,13 @@ terraform show -json tfplan | jq > tfplan-2.json
 {"@level":"info","@message":"intersight_ntp_policy.ntp_policy: Plan to create","@module":"terraform.ui","@timestamp":"2022-01-06T17:31:21.854262-08:00","change":{"resource":{"addr":"intersight_ntp_policy.ntp_policy","module":"","resource":"intersight_ntp_policy.ntp_policy","implied_provider":"intersight","resource_type":"intersight_ntp_policy","resource_name":"ntp_policy","resource_key":null},"action":"create"},"type":"planned_change"}
 {"@level":"info","@message":"Plan: 1 to add, 0 to change, 0 to destroy.","@module":"terraform.ui","@timestamp":"2022-01-06T17:31:21.855172-08:00","changes":{"add":1,"change":0,"remove":0,"operation":"plan"},"type":"change_summary"}
 {"@level":"info","@message":"Outputs: 1","@module":"terraform.ui","@timestamp":"2022-01-06T17:31:21.855259-08:00","outputs":{"ntp_data":{"sensitive":false,"action":"create"}},"type":"outputs"}
+```
 
-
+```
 Single line comments start with #
 Multi-line comments are wrapped with /* and */
 Multiline strings can use shell-style "here doc" syntax, with the string starting with a marker like <<EOF and then the string ending with EOF on a line of its own. The lines of the string and the end marker must not be indented.
-
+```
 
 
 tflint — https://github.com/terraform-linters/
