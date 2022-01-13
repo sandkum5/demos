@@ -78,7 +78,9 @@ The core Terraform workflow has three steps:
 - Tells Terraform what plugins to install, what infrastructure to create, what data to fetch.
 - Define dependencies between resources and create multiple similar resources
 
-Language Syntax consists of only a few basic elements:
+- Language Syntax consists of only a few basic elements:
+
+```
 <BLOCK TYPE> "<BLOCK LABEL>" "<BLOCK LABEL>" {
   # Block body
   <IDENTIFIER> = <EXPRESSION> # Argument
@@ -96,7 +98,7 @@ locals {}
 data "<resource_name>" "<local_identifier>" {}
 output "<local_identifier>" {}
 module "<mod_local_name> {}
-
+```
 ---
 # Terraform Basics
 
