@@ -10,7 +10,7 @@
 
 `05_multiple_different_resources` : Code to create multiple resources with different properties
 
-`06_multi_diff_resources_with_nested_objects` : Code to create multiple resources with different nested properties.
+`06_multi_diff_resources_with_nested_objects` : Code to create multiple resources with multi-level/nested properties.
 
 `07_separate_files` : Code to showcase how to keep code in separate files
 
@@ -21,6 +21,8 @@
 `10_validation` : Code to showcase variable input validation
 
 `11_policy` : Code to showcase policy check using conftest.
+
+`12_optional_resource_attributes` : Code to showcase how to make an attribute optional in resource configuration
 
 
 ## How to Demo
