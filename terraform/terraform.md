@@ -7,15 +7,32 @@ By: Sandeep Kumar
 ---
 # Agenda
 
+Session-1
 - What is Infrastructure as Code(IaC)
 - Benefits of IaC
 - What is Terraform
 - Core Terraform Workflow
 - HCL(HashiCorp Configuration Language)
+- Install Terraform
+
+Session-2:
 - Terraform Basics
-    - Variables, Providers, Backend, Resources, Data Sources, Output, Statefile, Meta-Parameters, Expressions, Environment variables, Debugging
+    - Variables, Providers, Resources, Data Sources, Output, Statefile,   
+    
+    - Session-3 Meta-Parameters - for_each, count, depends_on, lifecycle
+    
+    - Session-4 Expressions, Environment variables, Debugging
+    
+Session-5
 - Terraform Advanced
-    - Modules, Workspaces, TF Cloud, PaC(Policy as Code), Importing Infrastructure, Provisioners, CICD Workflow
+    - Modules, Backend, Workspaces, 
+    
+    - Session-6 TF Cloud, PaC(Policy as Code), 
+    
+    - Session-7 Importing Infrastructure, Provisioners, 
+    
+    - Session-8 CICD Workflow, miscellaneious. 
+    
 - Demos
 - Additional Info
   - terraform-docs, tfvar, File Extensions
