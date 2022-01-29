@@ -197,7 +197,15 @@ variable "<var_name>" {
 
 ## Providers
 
-- Intersight Example:
+**terraform block**
+- The terraform {} block contains Terraform settings, including the required providers Terraform will use to provision your infrastructure.
+- Terraform installs providers from the Terraform Registry by default.
+
+**provider block**
+- The provider block configures the specified provider, in this case intersight and ACI. 
+- A provider is a plugin that Terraform uses to create and manage your resources.
+
+- Example:
 
 ```
 terraform {
@@ -227,8 +235,15 @@ provider "aci" {
 
 ## Resources
 
+**resource block**
+- Use resource blocks to define components of your infrastructure. A resource might be a physical or virtual component
+- Resource blocks have two strings before the block: the resource type and the resource name. 
+- Together, the resource type and resource name form a unique ID for the resource. 
+- E.g. The ID for your below resource would be <resource_type>.<local_resource_name>
+- Resource blocks contain arguments which you use to configure the resource.
+
 ```
-resource "<resource_name>" "<local_resource_identifier>" {}
+resource "<resource_type>" "<local_resource_identifier|resource_name>" {}
 ```
 
 ---
