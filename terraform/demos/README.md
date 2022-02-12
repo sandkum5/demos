@@ -24,6 +24,9 @@
 
 `12_optional_resource_attributes` : Code to showcase how to make an attribute optional in resource configuration
 
+`13_cicd_demo` : Code to showcase github-actions
+                 Repo Link: https://github.com/sandkum5/CICD-DEMO
+
 
 ## How to Demo
 - **Update** `ApiKey.txt` file with the Intersight ApiKey.
