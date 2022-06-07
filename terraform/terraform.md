@@ -496,9 +496,10 @@ Workflow Commands:
     - terraform.tfvars - used to set the actual values of the variables
         -  If this is present in your root directory than terraform will load this file and apply the values.
     - terraform.tfvars.json
-    - *.auto.tfvars
+    - *.auto.tfvars  - If *.auto.tfvars present, overrides terraform.tfvars
     - *.auto.tfvars.json
     - If variable "var_name" {} is empty, then it will prompt during "terraform plan"
+    - If a variable file specified in the command line, e.g. terraform plan -var-file=ntp.tfvars, variables from ntp.tfvars will be used. 
 
 - State file:
     - terraform.tfstate
