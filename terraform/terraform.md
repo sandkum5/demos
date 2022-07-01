@@ -19,19 +19,24 @@ Session-2:
 - Terraform Basics
     - Variables, Providers, Resources, Data Sources, Output, Statefile,   
     
-    - Session-3 Meta-Parameters - for_each, count, depends_on, lifecycle
+Session-3:
+- Meta-Parameters - for_each, count, depends_on, lifecycle
     
-    - Session-4 Expressions, Environment variables, Debugging
+Session-4:
+- Expressions, Environment variables, Debugging
     
 Session-5
 - Terraform Advanced
-    - Modules, Backend, Workspaces, 
+  - Modules, Backend, Workspaces, 
     
-    - Session-6 TF Cloud, PaC(Policy as Code), 
+Session-6
+- TF Cloud, PaC(Policy as Code), 
     
-    - Session-7 Importing Infrastructure, Provisioners, 
+Session-7
+- Importing Infrastructure, Provisioners, 
     
-    - Session-8 CICD Workflow, miscellaneious. 
+Session-8:
+- CICD Workflow, miscellaneious. 
     
 - Demos
 - Additional Info
