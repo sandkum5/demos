@@ -3,7 +3,7 @@ resource "intersight_ntp_policy" "ntp_policy" {
   description = var.Description
   organization {
     object_type = "organization.Organization"
-    selector    = "$filter=Name eq '${var.Organization.Name}'"
+    selector    = "Name eq '${var.Organization.Name}'"
   }
   enabled     = var.Enabled
   ntp_servers = var.NtpServers
