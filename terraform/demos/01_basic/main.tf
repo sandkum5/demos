@@ -15,7 +15,7 @@ provider "intersight" {
 }
 
 resource "intersight_ntp_policy" "ntp_policy" {
-  name        = "ntp_basic_demo"
+  name        = "ntp_basic_demo_01"
   description = "Policy Created using no variables"
   enabled     = true
   ntp_servers = ["1.1.1.1", "2.2.2.2"]
