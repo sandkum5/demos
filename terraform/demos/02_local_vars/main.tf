@@ -1,9 +1,7 @@
 terraform {
-  required_version = ">= 0.13.5"
   required_providers {
     intersight = {
       source  = "CiscoDevNet/intersight"
-      version = "1.0.21"
     }
   }
 }
@@ -16,7 +14,7 @@ provider "intersight" {
 
 
 locals {
-  name        = "ntp_basic_demo"
+  name        = "ntp_basic_demo_02"
   description = "Policy Created using local variables"
   enabled     = true
   ntp_servers = ["1.1.1.1", "2.2.2.2"]
@@ -28,9 +26,6 @@ locals {
   tag_value2  = "LAB"
 }
 
-data "intersight_organization_organization" "org_data" {
-  name = local.org_name
-}
 
 resource "intersight_ntp_policy" "ntp_policy" {
   name        = local.name
@@ -40,7 +35,7 @@ resource "intersight_ntp_policy" "ntp_policy" {
   timezone    = local.timezone
   organization {
     object_type = "organization.Organization"
-    moid        = data.intersight_organization_organization.org_data.results[0].moid
+    selector    = "Name eq 'default'"
   }
   tags {
     key   = local.tag_key1
