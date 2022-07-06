@@ -1,9 +1,7 @@
 terraform {
-  required_version = ">= 0.13.5"
   required_providers {
     intersight = {
       source  = "CiscoDevNet/intersight"
-      # version = "1.0.21"
     }
   }
 }
@@ -12,10 +10,6 @@ provider "intersight" {
   apikey    = file("../ApiKey.txt")
   secretkey = "../SecretKey.txt"
   endpoint  = "https://intersight.com"
-}
-
-data "intersight_organization_organization" "org_data" {
-  name = var.org_name
 }
 
 resource "intersight_ntp_policy" "ntp_policy" {
@@ -29,7 +23,7 @@ resource "intersight_ntp_policy" "ntp_policy" {
   timezone = var.ntp_policy_timezone
   organization {
     object_type = "organization.Organization"
-    moid        = data.intersight_organization_organization.org_data.results[0].moid
+    selector    = "Name eq 'default'"
   }
   tags {
     key   = var.tags.key1
