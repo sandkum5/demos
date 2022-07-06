@@ -1,4 +1,4 @@
-module "vpc" {
+module "ntp" {
   source = "./modules/ntp"
   Name         = "Demo-NTP-Module"
   Description  = "NTP Policy using Modules"
