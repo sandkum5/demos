@@ -24,7 +24,13 @@
 
 `12_optional_resource_attributes` : Code to showcase how to make an attribute optional in resource configuration
 
-`13_cicd_demo` : Code to showcase github-actions
+`13_flatten_nested_objects` : Code to showcase flatten function example with nested objects
+
+`14_workspaces` : Code to demo terraform workspace example
+
+`15_import` : Code to demo terraform import example
+
+`16_cicd_demo` : Code to showcase github-actions
                  Repo Link: https://github.com/sandkum5/CICD-DEMO
 
 
